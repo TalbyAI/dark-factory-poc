@@ -9,8 +9,8 @@ kestra:
   server:
     basic-auth:
       enabled: true
-      username: admin
-      password: kestra
+      username: admin@local.test
+      password: Kestra123
   anonymous-usage-report:
     enabled: true
   repository:
