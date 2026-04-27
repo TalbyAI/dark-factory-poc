@@ -16,6 +16,10 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "#components/*": ["libs/ui/src/components/*"],
+      "#lib/*": ["libs/ui/src/lib/*"]
+    }
   }
 }
