@@ -4,6 +4,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { buildFactorySnapshot } from '@dark-factory/domain'
 import {
   AppShell,
+  AppShellNavigation,
   AppShellPromoCard,
   type AppShellNavSectionConfig,
   Button,
@@ -108,7 +109,9 @@ function HomePage() {
           </p>
         </div>
       }
-      sections={shellSections}
+      navigation={({ onNavigate }) => (
+        <AppShellNavigation sections={shellSections} onNavigate={onNavigate} />
+      )}
       sidebarFooter={
         <AppShellPromoCard
           eyebrow="Foundation"

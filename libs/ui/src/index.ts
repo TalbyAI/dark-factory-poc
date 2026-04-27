@@ -4,13 +4,23 @@ export {
 	AppShellBrand,
 	AppShellContent,
 	AppShellHeader,
-	AppShellNav,
-	AppShellNavLink,
-	AppShellNavSection,
 	AppShellPromoCard,
 	AppShellSidebar,
 } from './app-shell'
-export type { AppShellNavItem, AppShellNavSectionConfig, AppShellProps } from './app-shell'
+export type { AppShellNavigationRenderProps, AppShellNavigationSlot, AppShellProps } from './app-shell'
+export {
+	AppShellNav,
+	AppShellNavigation,
+	AppShellNavLink,
+	AppShellNavSection,
+} from './app-shell-navigation'
+export type {
+	AppShellAnchorProps,
+	AppShellButtonProps,
+	AppShellNavItem,
+	AppShellNavigationProps,
+	AppShellNavSectionConfig,
+} from './app-shell-navigation'
 export { Button, buttonVariants } from '#components/ui/button'
 export type { ButtonProps } from '#components/ui/button'
 export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '#components/ui/dialog'
