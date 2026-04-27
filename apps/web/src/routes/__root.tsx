@@ -1,38 +1,38 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 import {
   HeadContent,
   Outlet,
   Scripts,
   createRootRoute,
-} from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { getThemeBootScript } from '@dark-factory/ui'
-import appCss from '../styles/app.css?url'
+} from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { getThemeBootScript } from "@dark-factory/ui";
+import appCss from "../styles/app.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
     links: [
-      { rel: 'stylesheet', href: appCss },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-        crossOrigin: 'anonymous',
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
       },
       {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap',
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&family=Space+Grotesk:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
     meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Dark Factory' },
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Dark Factory" },
     ],
   }),
   component: RootComponent,
   notFoundComponent: RootNotFound,
-})
+});
 
 function RootComponent() {
   return (
@@ -40,7 +40,7 @@ function RootComponent() {
       <Outlet />
       <TanStackRouterDevtools />
     </RootDocument>
-  )
+  );
 }
 
 function RootDocument({ children }: { readonly children: ReactNode }) {
@@ -59,7 +59,7 @@ function RootDocument({ children }: { readonly children: ReactNode }) {
         <Scripts />
       </body>
     </html>
-  )
+  );
 }
 
 function RootNotFound() {
@@ -75,5 +75,5 @@ function RootNotFound() {
         </p>
       </div>
     </main>
-  )
+  );
 }

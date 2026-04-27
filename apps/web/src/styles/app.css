@@ -11,12 +11,19 @@
 
 body {
   background-image:
-    radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 32%),
-    radial-gradient(circle at bottom right, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 28%);
+    radial-gradient(
+      circle at top left,
+      color-mix(in srgb, var(--color-primary) 14%, transparent),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      color-mix(in srgb, var(--color-accent) 14%, transparent),
+      transparent 28%
+    );
 }
 
 ::selection {
   background: color-mix(in srgb, var(--color-primary) 26%, transparent);
   color: var(--color-foreground);
 }
-

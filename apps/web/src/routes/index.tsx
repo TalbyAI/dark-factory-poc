@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
-import { buildFactorySnapshot } from '@dark-factory/domain'
+import { useState } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+import { buildFactorySnapshot } from "@dark-factory/domain";
 import {
   AppShell,
   AppShellNavigation,
@@ -32,60 +32,70 @@ import {
   Textarea,
   buttonVariants,
   cn,
-} from '@dark-factory/ui'
+} from "@dark-factory/ui";
 
-const getFactorySnapshot = createServerFn({ method: 'GET' }).handler(async () => {
-  return buildFactorySnapshot()
-})
+const getFactorySnapshot = createServerFn({ method: "GET" }).handler(
+  async () => {
+    return buildFactorySnapshot();
+  },
+);
 
 const shellSections: AppShellNavSectionConfig[] = [
   {
-    key: 'dashboards',
-    title: 'Dashboards',
+    key: "dashboards",
+    title: "Dashboards",
     items: [
-      { key: 'analytics', label: 'Analytics', href: '/', active: true, badge: 'Live' },
-      { key: 'crm', label: 'CRM shell', href: '#', badge: 'Soon' },
+      {
+        key: "analytics",
+        label: "Analytics",
+        href: "/",
+        active: true,
+        badge: "Live",
+      },
+      { key: "crm", label: "CRM shell", href: "#", badge: "Soon" },
     ],
   },
   {
-    key: 'pages',
-    title: 'Pages',
+    key: "pages",
+    title: "Pages",
     items: [
-      { key: 'tables', label: 'Tables', href: '#' },
-      { key: 'forms', label: 'Forms', href: '#' },
-      { key: 'profile', label: 'User profile', href: '#' },
+      { key: "tables", label: "Tables", href: "#" },
+      { key: "forms", label: "Forms", href: "#" },
+      { key: "profile", label: "User profile", href: "#" },
     ],
   },
   {
-    key: 'apps',
-    title: 'Apps',
+    key: "apps",
+    title: "Apps",
     items: [
-      { key: 'notes', label: 'Notes', href: '#' },
-      { key: 'tickets', label: 'Tickets', href: '#' },
-      { key: 'blogs', label: 'Blogs', href: '#' },
+      { key: "notes", label: "Notes", href: "#" },
+      { key: "tickets", label: "Tickets", href: "#" },
+      { key: "blogs", label: "Blogs", href: "#" },
     ],
   },
   {
-    key: 'widgets',
-    title: 'Widgets',
+    key: "widgets",
+    title: "Widgets",
     items: [
-      { key: 'cards', label: 'Cards', href: '#' },
-      { key: 'banners', label: 'Banners', href: '#' },
-      { key: 'charts', label: 'Charts', href: '#' },
+      { key: "cards", label: "Cards", href: "#" },
+      { key: "banners", label: "Banners", href: "#" },
+      { key: "charts", label: "Charts", href: "#" },
     ],
   },
-]
+];
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   loader: async () => getFactorySnapshot(),
   component: HomePage,
-})
+});
 
 function HomePage() {
-  const snapshot = Route.useLoaderData()
-  const [notes, setNotes] = useState('Carry one landing-page refactor through real app integration before expanding the registry.')
-  const [lineName, setLineName] = useState('Night Shift')
-  const [rolloutLane, setRolloutLane] = useState('pilot')
+  const snapshot = Route.useLoaderData();
+  const [notes, setNotes] = useState(
+    "Carry one landing-page refactor through real app integration before expanding the registry.",
+  );
+  const [lineName, setLineName] = useState("Night Shift");
+  const [rolloutLane, setRolloutLane] = useState("pilot");
 
   return (
     <AppShell
@@ -105,7 +115,8 @@ function HomePage() {
             </div>
           </div>
           <p className="text-sm leading-6 text-muted-foreground">
-            Shared shell primitives live in the UI package. Route data and state stay in the app.
+            Shared shell primitives live in the UI package. Route data and state
+            stay in the app.
           </p>
         </div>
       }
@@ -147,13 +158,16 @@ function HomePage() {
             <>
               <Button>Ship first slice</Button>
               <Popover>
-                <PopoverTrigger className={cn(buttonVariants({ variant: 'outline' }))}>
+                <PopoverTrigger
+                  className={cn(buttonVariants({ variant: "outline" }))}
+                >
                   Why this split
                 </PopoverTrigger>
                 <PopoverContent align="end" className="w-72">
                   <PopoverTitle>Package boundary stays intact</PopoverTitle>
                   <PopoverDescription>
-                    Shared shell primitives live in the UI package. Route composition, nav data, and screen state stay app-local.
+                    Shared shell primitives live in the UI package. Route
+                    composition, nav data, and screen state stay app-local.
                   </PopoverDescription>
                 </PopoverContent>
               </Popover>
@@ -185,13 +199,21 @@ function HomePage() {
             </div>
 
             <Popover>
-              <PopoverTrigger className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'rounded-xl')} aria-label="Show implementation note">
+              <PopoverTrigger
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "rounded-xl",
+                )}
+                aria-label="Show implementation note"
+              >
                 ?
               </PopoverTrigger>
               <PopoverContent align="end" className="w-64">
                 <PopoverTitle>Validation bar</PopoverTitle>
                 <PopoverDescription>
-                  The shell chrome is reusable UI. This form remains the app-level proof that composition and state stay outside the package.
+                  The shell chrome is reusable UI. This form remains the
+                  app-level proof that composition and state stay outside the
+                  package.
                 </PopoverDescription>
               </PopoverContent>
             </Popover>
@@ -218,14 +240,20 @@ function HomePage() {
               description="The select content stays replaceable while label and help text spacing stay consistent."
             >
               {(controlProps) => (
-                <Select value={rolloutLane} onValueChange={(value) => setRolloutLane(value ?? 'pilot')}>
-                  <SelectTrigger {...controlProps} placeholder="Choose a rollout lane" />
-                <SelectContent>
-                  <SelectItem value="pilot">Pilot</SelectItem>
-                  <SelectItem value="shadow">Shadow deploy</SelectItem>
-                  <SelectItem value="wide">Wide release</SelectItem>
-                </SelectContent>
-              </Select>
+                <Select
+                  value={rolloutLane}
+                  onValueChange={(value) => setRolloutLane(value ?? "pilot")}
+                >
+                  <SelectTrigger
+                    {...controlProps}
+                    placeholder="Choose a rollout lane"
+                  />
+                  <SelectContent>
+                    <SelectItem value="pilot">Pilot</SelectItem>
+                    <SelectItem value="shadow">Shadow deploy</SelectItem>
+                    <SelectItem value="wide">Wide release</SelectItem>
+                  </SelectContent>
+                </Select>
               )}
             </FormField>
 
@@ -246,32 +274,49 @@ function HomePage() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Dialog>
-              <DialogTrigger className={cn(buttonVariants())}>Review slice</DialogTrigger>
+              <DialogTrigger className={cn(buttonVariants())}>
+                Review slice
+              </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>First vertical slice is live</DialogTitle>
                   <DialogDescription>
-                    The shared package now owns theme tokens, shared primitives, and the analytics shell frame.
+                    The shared package now owns theme tokens, shared primitives,
+                    and the analytics shell frame.
                   </DialogDescription>
                 </DialogHeader>
 
                 <dl className="mt-6 grid gap-4 rounded-xl border border-border bg-muted/60 p-4 text-sm">
                   <div className="grid gap-1">
-                    <dt className="font-medium text-foreground">Server loader</dt>
-                    <dd className="text-muted-foreground">GET / -&gt; createServerFn -&gt; @dark-factory/domain</dd>
+                    <dt className="font-medium text-foreground">
+                      Server loader
+                    </dt>
+                    <dd className="text-muted-foreground">
+                      GET / -&gt; createServerFn -&gt; @dark-factory/domain
+                    </dd>
                   </div>
                   <div className="grid gap-1">
-                    <dt className="font-medium text-foreground">Reference form</dt>
-                    <dd className="text-muted-foreground">{lineName} / {rolloutLane}</dd>
+                    <dt className="font-medium text-foreground">
+                      Reference form
+                    </dt>
+                    <dd className="text-muted-foreground">
+                      {lineName} / {rolloutLane}
+                    </dd>
                   </div>
                   <div className="grid gap-1">
-                    <dt className="font-medium text-foreground">Current note</dt>
+                    <dt className="font-medium text-foreground">
+                      Current note
+                    </dt>
                     <dd className="text-muted-foreground">{notes}</dd>
                   </div>
                 </dl>
 
                 <DialogFooter>
-                  <DialogClose className={cn(buttonVariants({ variant: 'outline' }))}>Keep editing</DialogClose>
+                  <DialogClose
+                    className={cn(buttonVariants({ variant: "outline" }))}
+                  >
+                    Keep editing
+                  </DialogClose>
                   <Button>Promote foundation</Button>
                 </DialogFooter>
               </DialogContent>
@@ -282,5 +327,5 @@ function HomePage() {
         </section>
       </div>
     </AppShell>
-  )
+  );
 }

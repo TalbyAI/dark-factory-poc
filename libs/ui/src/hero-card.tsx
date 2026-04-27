@@ -1,19 +1,25 @@
-import type { ReactNode } from 'react'
-import { cn } from './cn'
+import type { ReactNode } from "react";
+import { cn } from "./cn";
 
 export interface HeroCardProps {
-  readonly title: string
-  readonly eyebrow: string
-  readonly children: ReactNode
-  readonly actions?: ReactNode
-  readonly className?: string
+  readonly title: string;
+  readonly eyebrow: string;
+  readonly children: ReactNode;
+  readonly actions?: ReactNode;
+  readonly className?: string;
 }
 
-export function HeroCard({ title, eyebrow, children, actions, className }: HeroCardProps) {
+export function HeroCard({
+  title,
+  eyebrow,
+  children,
+  actions,
+  className,
+}: HeroCardProps) {
   return (
     <section
       className={cn(
-        'relative overflow-hidden rounded-[1.75rem] border border-border bg-card/85 p-8 text-card-foreground shadow-card backdrop-blur sm:p-10',
+        "relative overflow-hidden rounded-[1.75rem] border border-border bg-card/85 p-8 text-card-foreground shadow-card backdrop-blur sm:p-10",
         className,
       )}
     >
@@ -28,7 +34,9 @@ export function HeroCard({ title, eyebrow, children, actions, className }: HeroC
       <div className="mt-6 space-y-4 text-base leading-7 text-muted-foreground">
         {children}
       </div>
-      {actions ? <div className="relative mt-8 flex flex-wrap gap-3">{actions}</div> : null}
+      {actions ? (
+        <div className="relative mt-8 flex flex-wrap gap-3">{actions}</div>
+      ) : null}
     </section>
-  )
+  );
 }
