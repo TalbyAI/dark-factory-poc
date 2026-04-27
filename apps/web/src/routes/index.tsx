@@ -3,6 +3,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { buildFactorySnapshot } from '@dark-factory/domain'
 import {
+  AppShell,
+  AppShellPromoCard,
+  type AppShellNavSectionConfig,
   Button,
   Dialog,
   DialogClose,
@@ -24,6 +27,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
+  ThemeToggle,
   Textarea,
   buttonVariants,
   cn,
@@ -32,6 +36,44 @@ import {
 const getFactorySnapshot = createServerFn({ method: 'GET' }).handler(async () => {
   return buildFactorySnapshot()
 })
+
+const shellSections: AppShellNavSectionConfig[] = [
+  {
+    key: 'dashboards',
+    title: 'Dashboards',
+    items: [
+      { key: 'analytics', label: 'Analytics', href: '/', active: true, badge: 'Live' },
+      { key: 'crm', label: 'CRM shell', href: '#', badge: 'Soon' },
+    ],
+  },
+  {
+    key: 'pages',
+    title: 'Pages',
+    items: [
+      { key: 'tables', label: 'Tables', href: '#' },
+      { key: 'forms', label: 'Forms', href: '#' },
+      { key: 'profile', label: 'User profile', href: '#' },
+    ],
+  },
+  {
+    key: 'apps',
+    title: 'Apps',
+    items: [
+      { key: 'notes', label: 'Notes', href: '#' },
+      { key: 'tickets', label: 'Tickets', href: '#' },
+      { key: 'blogs', label: 'Blogs', href: '#' },
+    ],
+  },
+  {
+    key: 'widgets',
+    title: 'Widgets',
+    items: [
+      { key: 'cards', label: 'Cards', href: '#' },
+      { key: 'banners', label: 'Banners', href: '#' },
+      { key: 'charts', label: 'Charts', href: '#' },
+    ],
+  },
+]
 
 export const Route = createFileRoute('/')({
   loader: async () => getFactorySnapshot(),
@@ -45,8 +87,56 @@ function HomePage() {
   const [rolloutLane, setRolloutLane] = useState('pilot')
 
   return (
-    <main className="min-h-screen px-6 py-16 sm:px-10 lg:px-16">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(20rem,0.8fr)]">
+    <AppShell
+      brand={
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="flex size-12 items-center justify-center rounded-2xl bg-primary text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground shadow-soft">
+              DF
+            </div>
+            <div>
+              <p className="text-[0.69rem] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
+                Dark Factory
+              </p>
+              <h1 className="mt-1 font-display text-lg font-semibold tracking-tight text-foreground">
+                Analytics shell
+              </h1>
+            </div>
+          </div>
+          <p className="text-sm leading-6 text-muted-foreground">
+            Shared shell primitives live in the UI package. Route data and state stay in the app.
+          </p>
+        </div>
+      }
+      sections={shellSections}
+      sidebarFooter={
+        <AppShellPromoCard
+          eyebrow="Foundation"
+          title="Grab the shared shell"
+          description="The sidebar, header, and layout chrome now ship from the UI package so new routes can reuse the same frame."
+          action={<Button className="w-full">Promote shell</Button>}
+        />
+      }
+      topbar={
+        <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <p className="text-[0.69rem] font-semibold uppercase tracking-[0.32em] text-primary">
+              Dashboard shell 01
+            </p>
+            <h2 className="mt-2 truncate font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Analytics Dashboard
+            </h2>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+            <div className="rounded-2xl border border-border/70 bg-background/80 px-4 py-2 text-sm text-muted-foreground shadow-soft">
+              Shell only. Content stays app-specific.
+            </div>
+            <ThemeToggle />
+          </div>
+        </div>
+      }
+    >
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(21rem,0.8fr)]">
         <HeroCard
           eyebrow="UI foundation"
           title={snapshot.headline}
@@ -60,7 +150,7 @@ function HomePage() {
                 <PopoverContent align="end" className="w-72">
                   <PopoverTitle>Package boundary stays intact</PopoverTitle>
                   <PopoverDescription>
-                    Primitives and reusable patterns live in the shared package. Route composition and form state stay in the app.
+                    Shared shell primitives live in the UI package. Route composition, nav data, and screen state stay app-local.
                   </PopoverDescription>
                 </PopoverContent>
               </Popover>
@@ -98,7 +188,7 @@ function HomePage() {
               <PopoverContent align="end" className="w-64">
                 <PopoverTitle>Validation bar</PopoverTitle>
                 <PopoverDescription>
-                  This form is the real integration proof for the first component slice. State stays app-local by design.
+                  The shell chrome is reusable UI. This form remains the app-level proof that composition and state stay outside the package.
                 </PopoverDescription>
               </PopoverContent>
             </Popover>
@@ -139,7 +229,7 @@ function HomePage() {
                 <DialogHeader>
                   <DialogTitle>First vertical slice is live</DialogTitle>
                   <DialogDescription>
-                    The shared package now owns theme tokens, shared primitives, and the landing-page pattern shell.
+                    The shared package now owns theme tokens, shared primitives, and the analytics shell frame.
                   </DialogDescription>
                 </DialogHeader>
 
@@ -169,6 +259,6 @@ function HomePage() {
           </div>
         </section>
       </div>
-    </main>
+    </AppShell>
   )
 }

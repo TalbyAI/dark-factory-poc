@@ -6,7 +6,6 @@ import {
   createRootRoute,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { ThemeToggle } from '@dark-factory/ui'
 import appCss from '../styles/app.css?url'
 
 export const Route = createRootRoute({
@@ -55,9 +54,6 @@ function RootDocument({ children }: { readonly children: ReactNode }) {
         />
       </head>
       <body>
-        <div className="fixed right-4 top-4 z-50">
-          <ThemeToggle />
-        </div>
         {children}
         <Scripts />
       </body>

@@ -1,4 +1,16 @@
 export { cn } from './cn'
+export {
+	AppShell,
+	AppShellBrand,
+	AppShellContent,
+	AppShellHeader,
+	AppShellNav,
+	AppShellNavLink,
+	AppShellNavSection,
+	AppShellPromoCard,
+	AppShellSidebar,
+} from './app-shell'
+export type { AppShellNavItem, AppShellNavSectionConfig, AppShellProps } from './app-shell'
 export { Button, buttonVariants } from '#components/ui/button'
 export type { ButtonProps } from '#components/ui/button'
 export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '#components/ui/dialog'
