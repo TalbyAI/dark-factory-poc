@@ -16,15 +16,15 @@ function HomePage() {
   const snapshot = Route.useLoaderData()
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.15),_transparent_35%),linear-gradient(180deg,_#f8fafc_0%,_#e2e8f0_100%)] px-6 py-16 text-slate-950 sm:px-10 lg:px-16">
+    <main className="min-h-screen px-6 py-16 sm:px-10 lg:px-16">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(20rem,0.8fr)]">
         <HeroCard eyebrow="Monorepo bootstrap" title={snapshot.headline}>
           <p>{snapshot.summary}</p>
-          <ul className="grid gap-3 pt-2 text-sm text-slate-600 sm:grid-cols-3">
+          <ul className="grid gap-3 pt-2 text-sm sm:grid-cols-3">
             {snapshot.pillars.map((pillar) => (
               <li
                 key={pillar}
-                className="rounded-2xl border border-slate-200 bg-white/70 px-4 py-3"
+                className="rounded-2xl border border-border bg-surface px-4 py-3 text-surface-foreground"
               >
                 {pillar}
               </li>
@@ -32,16 +32,16 @@ function HomePage() {
           </ul>
         </HeroCard>
 
-        <aside className="rounded-[2rem] border border-slate-200/80 bg-slate-950 px-6 py-8 text-slate-50 shadow-[0_24px_80px_rgba(15,23,42,0.2)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300">
+        <aside className="rounded-3xl border border-border bg-foreground px-6 py-8 text-background shadow-elevated dark:bg-surface dark:text-surface-foreground dark:border-primary/20">
+          <p className="font-display text-xs font-semibold uppercase tracking-[0.35em] text-primary">
             Included backend
           </p>
-          <h2 className="mt-4 text-2xl font-semibold">Server function live</h2>
-          <p className="mt-4 text-sm leading-7 text-slate-300">
+          <h2 className="mt-4 font-display text-2xl font-semibold">Server function live</h2>
+          <p className="mt-4 text-sm leading-7 opacity-70">
             This page is loaded from a TanStack Start server function that pulls
             its response from the shared domain package.
           </p>
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 font-mono text-sm text-cyan-100">
+          <div className="mt-8 rounded-2xl border border-current/10 bg-current/5 p-4 font-mono text-sm text-primary">
             GET / (loader) -&gt; createServerFn -&gt; @dark-factory/domain
           </div>
         </aside>
