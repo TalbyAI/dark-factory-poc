@@ -6,6 +6,11 @@
     "dev": "pnpm --filter @dark-factory/web dev",
     "build": "pnpm --filter @dark-factory/web build",
     "start": "pnpm --filter @dark-factory/web start",
-    "typecheck": "pnpm -r --if-present typecheck"
+    "typecheck": "pnpm -r --if-present typecheck",
+    "check:prettier": "prettier --check .",
+    "fix:prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3"
   }
 }
