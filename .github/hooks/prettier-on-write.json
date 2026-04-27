@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "node .github/hooks/prettier-on-write.cjs",
+        "timeout": 30
+      }
+    ]
+  }
+}
