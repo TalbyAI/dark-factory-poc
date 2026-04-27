@@ -13,3 +13,20 @@
 
 # Context Mode Files
 .github/context-mode/*
+
+# Node
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.output/
+.vinxi/
+
+# Generated router tree
+apps/web/src/routeTree.gen.ts
+
+# Environment files
+.env
+.env.*
+!.env.example
