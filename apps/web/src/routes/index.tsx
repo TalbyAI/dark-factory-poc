@@ -16,9 +16,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  FormField,
   HeroCard,
   Input,
-  Label,
   Popover,
   PopoverContent,
   PopoverDescription,
@@ -198,31 +198,50 @@ function HomePage() {
           </div>
 
           <div className="mt-8 grid gap-5">
-            <div className="grid gap-2">
-              <Label htmlFor="line-name">Line name</Label>
-              <Input id="line-name" value={lineName} onChange={(event) => setLineName(event.target.value)} />
-            </div>
+            <FormField
+              id="line-name"
+              label="Line name"
+              description="Keep the naming in the app layer. The field pattern only owns presentation and accessible copy placement."
+            >
+              {(controlProps) => (
+                <Input
+                  {...controlProps}
+                  value={lineName}
+                  onChange={(event) => setLineName(event.target.value)}
+                />
+              )}
+            </FormField>
 
-            <div className="grid gap-2">
-              <Label>Rollout lane</Label>
-              <Select value={rolloutLane} onValueChange={(value) => setRolloutLane(value ?? 'pilot')}>
-                <SelectTrigger placeholder="Choose a rollout lane" />
+            <FormField
+              id="rollout-lane"
+              label="Rollout lane"
+              description="The select content stays replaceable while label and help text spacing stay consistent."
+            >
+              {(controlProps) => (
+                <Select value={rolloutLane} onValueChange={(value) => setRolloutLane(value ?? 'pilot')}>
+                  <SelectTrigger {...controlProps} placeholder="Choose a rollout lane" />
                 <SelectContent>
                   <SelectItem value="pilot">Pilot</SelectItem>
                   <SelectItem value="shadow">Shadow deploy</SelectItem>
                   <SelectItem value="wide">Wide release</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
+              )}
+            </FormField>
 
-            <div className="grid gap-2">
-              <Label htmlFor="operator-notes">Operator notes</Label>
-              <Textarea
-                id="operator-notes"
-                value={notes}
-                onChange={(event) => setNotes(event.target.value)}
-              />
-            </div>
+            <FormField
+              id="operator-notes"
+              label="Operator notes"
+              description="Future field errors can land below this control without each form relearning the stack order."
+            >
+              {(controlProps) => (
+                <Textarea
+                  {...controlProps}
+                  value={notes}
+                  onChange={(event) => setNotes(event.target.value)}
+                />
+              )}
+            </FormField>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
