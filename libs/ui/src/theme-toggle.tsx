@@ -1,31 +1,14 @@
-import { useEffect, useState } from 'react'
 import { MoonStarIcon, SunMediumIcon } from 'lucide-react'
 import { Button } from '#components/ui/button'
 import { cn } from './cn'
-
-type Theme = 'light' | 'dark'
-
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'light'
-  const stored = localStorage.getItem('theme') as Theme | null
-  if (stored) return stored
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light'
-}
+import { useTheme } from './theme'
 
 export function ThemeToggle({ className }: { readonly className?: string }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
-
-  useEffect(() => {
-    const root = document.documentElement
-    root.classList.toggle('dark', theme === 'dark')
-    localStorage.setItem('theme', theme)
-  }, [theme])
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <Button
-      onClick={() => setTheme((t) => (t === 'light' ? 'dark' : 'light'))}
+      onClick={toggleTheme}
       size="icon"
       variant="outline"
       className={cn(

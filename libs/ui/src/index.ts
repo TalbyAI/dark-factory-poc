@@ -24,4 +24,6 @@ export { Popover, PopoverClose, PopoverContent, PopoverDescription, PopoverTitle
 export { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '#components/ui/select'
 export { Textarea } from '#components/ui/textarea'
 export type { TextareaProps } from '#components/ui/textarea'
+export { getInitialTheme, getPreferredTheme, getStoredTheme, getThemeBootScript, syncTheme, ThemeScript, toggleTheme, useTheme } from './theme'
+export type { Theme } from './theme'
 export { ThemeToggle } from './theme-toggle'

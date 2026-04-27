@@ -6,6 +6,7 @@ import {
   createRootRoute,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { getThemeBootScript } from '@dark-factory/ui'
 import appCss from '../styles/app.css?url'
 
 export const Route = createRootRoute({
@@ -49,7 +50,7 @@ function RootDocument({ children }: { readonly children: ReactNode }) {
         <HeadContent />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()`,
+            __html: getThemeBootScript(),
           }}
         />
       </head>
